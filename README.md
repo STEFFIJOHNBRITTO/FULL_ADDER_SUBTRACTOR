@@ -38,7 +38,11 @@ Borrow out = A'Bin + A'B + BBin
 
 **Truthtable**
 
+FULL ADDER
+
 ![full addsub](https://github.com/user-attachments/assets/b62be1cd-674c-42e0-a38d-b9df01d266f1)
+
+FULL SUBTRACTER
 
 ![Screenshot 2024-12-02 211726](https://github.com/user-attachments/assets/91e597f3-6072-4ded-ba93-d77704b7090f)
 
@@ -67,23 +71,48 @@ Full Adder: Inputs: Three inputs: A, B (the two bits to be added), and Cin (the 
 
  ```
 
- module fulladdsub(a,b,cin,bin,sum,carry,difference,borrow); 
-input a,b,cin,bin; output sum,carry,difference,borrow; 
-assign sum=a^b^cin; 
-assign carry=(a^b)&cin|a&b;
- assign difference=a^b^bin; 
-assign borrow=~(a^b)&bin|(~a)&b;
+ FULL ADDER
+
+ module fulladd(a,b,cin,sum,carry);
+ input a,b,cin;
+ output sum,carry;
+ assign sum=( (a ^ b)^cin);
+ assign carry= ( (a & b)| ( cin &(a ^ b )));
+ endmodule
+
+ FULL SUBTRACTOR
+
+ module fullsub(a,b,bin,difference,borrow);
+ input a,b,bin;
+ output difference,borrow;
+ assign difference= ( (a ^ b)^bin);
+ assign borrow= ( ( ~a & b)| ( bin & (~(a ^ b ))));
+ endmodule
 
 ```
 
 **RTL Schematic**
 
-![f addsub](https://github.com/user-attachments/assets/00c15eb3-d991-43b2-be78-6d563f1ca6af)
+FULL ADDER
+
+![image](https://github.com/user-attachments/assets/c9032e41-7727-4025-9b64-9279dbccfed2)
+
+FULL SUBTRACTER
+
+![image](https://github.com/user-attachments/assets/16f31b0d-49f4-4ce3-bd88-f5516522c67e)
 
 
 **Output Timing Waveform**
 
-![f addsub](https://github.com/user-attachments/assets/b8a820ff-5672-41f3-bdb9-bdaccb0d86e1)
+FULL ADDER
+
+![image](https://github.com/user-attachments/assets/cfa7a6f0-fa93-4956-aea2-80067e6ae659)
+
+
+FULL SUBTRACTER
+
+![image](https://github.com/user-attachments/assets/cfee1002-b37a-4b77-a507-e2722119ceb1)
+
 
 
 **Result:**
